@@ -1,5 +1,5 @@
 import { Layout } from "@/components/Layout";
-import { Truck, Clock, MapPin, CreditCard } from "lucide-react";
+import { Truck, Clock, MapPin, CreditCard, ShieldCheck } from "lucide-react";
 
 export default function Delivery() {
   return (
