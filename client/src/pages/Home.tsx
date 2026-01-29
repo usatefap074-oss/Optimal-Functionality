@@ -124,34 +124,40 @@ export default function Home() {
       {/* Benefits */}
       <section className="py-16 bg-white">
         <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-display font-bold mb-4">Почему выбирают нас</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Мы занимаемся птицами уже более 10 лет и знаем, как сделать их жизнь счастливой, а вашу покупку — максимально комфортной и безопасной.
+            </p>
+          </div>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-orange-50 border border-orange-100">
+            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-orange-50 border border-orange-100 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-primary/20 text-primary rounded-full flex items-center justify-center mb-4">
-                <Package className="w-6 h-6" />
+                <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="font-bold mb-2">Широкий ассортимент</h3>
-              <p className="text-sm text-muted-foreground">Более 1000 товаров для всех видов попугаев</p>
+              <h3 className="font-bold mb-2">10+ лет опыта</h3>
+              <p className="text-sm text-muted-foreground">Экспертно подбираем товары для пернатых с 2014 года</p>
             </div>
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-green-50 border border-green-100">
+            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-green-50 border border-green-100 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-secondary/20 text-secondary rounded-full flex items-center justify-center mb-4">
                 <Truck className="w-6 h-6" />
               </div>
-              <h3 className="font-bold mb-2">Быстрая доставка</h3>
-              <p className="text-sm text-muted-foreground">Доставляем по всей России. Бесплатно от 5000₽</p>
+              <h3 className="font-bold mb-2">Безопасная доставка</h3>
+              <p className="text-sm text-muted-foreground">Бережная упаковка и страховка каждого заказа по всей РФ</p>
             </div>
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-blue-50 border border-blue-100">
+            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-blue-50 border border-blue-100 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-blue-500/20 text-blue-600 rounded-full flex items-center justify-center mb-4">
-                <ShieldCheck className="w-6 h-6" />
+                <Package className="w-6 h-6" />
               </div>
-              <h3 className="font-bold mb-2">Гарантия качества</h3>
-              <p className="text-sm text-muted-foreground">Только сертифицированные товары от проверенных брендов</p>
+              <h3 className="font-bold mb-2">Только оригинал</h3>
+              <p className="text-sm text-muted-foreground">Работаем напрямую с проверенными мировыми брендами</p>
             </div>
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-pink-50 border border-pink-100">
+            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-pink-50 border border-pink-100 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-pink-500/20 text-pink-600 rounded-full flex items-center justify-center mb-4">
                 <HeartHandshake className="w-6 h-6" />
               </div>
-              <h3 className="font-bold mb-2">Помощь экспертов</h3>
-              <p className="text-sm text-muted-foreground">Бесплатная консультация по уходу и содержанию</p>
+              <h3 className="font-bold mb-2">Забота о клиенте</h3>
+              <p className="text-sm text-muted-foreground">Помогаем на каждом этапе — от выбора до получения</p>
             </div>
           </div>
         </div>

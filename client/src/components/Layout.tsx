@@ -159,8 +159,12 @@ export function Layout({ children }: LayoutProps) {
           <div className="space-y-4">
             <h3 className="text-xl font-bold font-display text-primary">Золотой Какаду</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Ваш любимый интернет-магазин товаров для попугаев и других птиц. Мы заботимся о здоровье и счастье ваших пернатых друзей.
+              Эксперты в мире птиц с 2014 года. Мы знаем, что нужно вашим пернатым друзьям. Тысячи довольных клиентов и счастливых попугаев по всей России.
             </p>
+            <div className="flex gap-2">
+              <Badge variant="outline" className="text-[10px] border-primary/20 text-gray-400">10 лет на рынке</Badge>
+              <Badge variant="outline" className="text-[10px] border-primary/20 text-gray-400">Гарантия качества</Badge>
+            </div>
           </div>
           
           <div>

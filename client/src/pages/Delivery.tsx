@@ -73,6 +73,22 @@ export default function Delivery() {
         </div>
 
         <div className="space-y-8">
+          <div className="bg-muted/30 p-8 rounded-3xl border border-border">
+            <h3 className="text-xl font-bold flex items-center gap-2 mb-4">
+              <ShieldCheck className="w-6 h-6 text-primary" /> Гарантия сохранности и надежности
+            </h3>
+            <div className="text-muted-foreground leading-relaxed space-y-4">
+              <p>
+                Мы понимаем, как важно получить заказ в идеальном состоянии. С 2014 года мы отправили более 50 000 посылок по всей России, от Калининграда до Владивостока.
+              </p>
+              <ul className="list-disc list-offset-4 pl-4 space-y-2">
+                <li><strong>Бережная упаковка:</strong> Каждая клетка и упаковка корма оборачивается в несколько слоев воздушно-пузырьковой пленки и помещается в прочный пятислойный гофрокартон.</li>
+                <li><strong>Полная страховка:</strong> Все отправления застрахованы на полную стоимость. Если при доставке что-то случится — мы бесплатно заменим товар или вернем деньги.</li>
+                <li><strong>Трекинг 24/7:</strong> Сразу после отправки вы получите трек-номер для отслеживания в Telegram, WhatsApp или по Email.</li>
+              </ul>
+            </div>
+          </div>
+
           <div>
             <h3 className="text-xl font-bold flex items-center gap-2 mb-4">
               <Clock className="w-6 h-6 text-primary" /> Сроки обработки заказов
