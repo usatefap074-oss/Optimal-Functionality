@@ -35,6 +35,23 @@ export async function registerRoutes(
     });
   });
 
+  // === FIX IMAGES ===
+  app.post("/api/fix-images", async (req, res) => {
+    try {
+      const { db } = await import("./db");
+      const stmt = db.prepare(`
+        UPDATE products
+        SET image = '/images/products/product-' || id || '.jpg',
+            images = '["' || '/images/products/product-' || id || '.jpg' || '"]'
+        WHERE image LIKE 'http%'
+      `);
+      const result = stmt.run();
+      res.json({ success: true, updated: result.changes });
+    } catch (error: any) {
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
   // === API ROUTES ===
 
   app.get(api.products.list.path, async (req, res) => {
