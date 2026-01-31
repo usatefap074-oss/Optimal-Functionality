@@ -65,7 +65,7 @@ jobs:
             deploy.tar.gz \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
 
-      # 8. Развертывание на сервере
+      # 8. Развертывание на сервере - ПОЛНЫЙ КЛОН
       - name: Deploy on server
         run: |
           ssh -i ~/.ssh/deploy_key \
@@ -73,49 +73,45 @@ jobs:
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
           set -e
 
-          echo "Removing old files..."
-          rm -rf "${{ secrets.DEPLOY_PATH }}"/*
+          echo "Удаляем ВСЕ старые файлы..."
+          rm -rf "${{ secrets.DEPLOY_PATH }}"
 
-          echo "Creating deploy directory..."
-          mkdir -p "${{ secrets.DEPLOY_PATH }}"
+          echo "Клонируем репозиторий..."
+          git clone https://github.com/usatefap074-oss/Optimal-Functionality.git "${{ secrets.DEPLOY_PATH }}"
 
-          echo "Extracting files..."
           cd "${{ secrets.DEPLOY_PATH }}"
-          tar -xzf /tmp/deploy.tar.gz
-          rm /tmp/deploy.tar.gz
 
-          echo "Installing production dependencies..."
-          npm ci --omit=dev --ignore-scripts
+          echo "Устанавливаем зависимости..."
+          npm ci
 
-          # Create .env if not exists
-          if [ ! -f .env ]; then
-            echo "Creating .env file..."
-            cat > .env << 'EOF'
+          echo "Собираем проект..."
+          npm run build
+
+          echo "Создаем .env..."
+          cat > .env << 'EOF'
           NODE_ENV=production
           PORT=5000
           DATABASE_PATH=${{ secrets.DEPLOY_PATH }}/data/parrot_shop.db
           EOF
-            if [ -n "${{ secrets.TELEGRAM_BOT_TOKEN }}" ]; then
-              echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
-            fi
-            if [ -n "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then
-              echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
-            fi
+
+          if [ -n "${{ secrets.TELEGRAM_BOT_TOKEN }}" ]; then
+            echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+          fi
+          if [ -n "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then
+            echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
           fi
 
           mkdir -p data
 
-          echo "Restarting application..."
+          echo "Перезапускаем сервис..."
           sudo systemctl daemon-reload
           sudo systemctl restart parrot-shop
 
-          # Check status
           sleep 3
           if sudo systemctl is-active --quiet parrot-shop; then
-            echo "✅ Service started successfully"
+            echo "✅ Сервис запущен"
           else
-            echo "❌ Service failed to start"
-            echo "Service logs:"
+            echo "❌ Ошибка запуска"
             sudo journalctl -u parrot-shop -n 30 --no-pager
             exit 1
           fi
