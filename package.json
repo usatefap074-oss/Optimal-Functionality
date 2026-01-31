@@ -15,7 +15,8 @@
     "reimport:parrots": "tsx script/reimport-products.ts",
     "fix-images": "tsx fix-images-production.ts",
     "sync:images": "tsx script/sync-all-images.ts",
-    "compress:images": "tsx script/compress-images.ts"
+    "compress:images": "tsx script/compress-images.ts",
+    "fix-db": "node -e \"const db=require('better-sqlite3')('./data/parrot_shop.db');db.prepare('UPDATE products SET image=\\'/images/products/product-\\'||id||\\'.jpg\\',images=\\'[\\\"/images/products/product-\\'||id||\\'.jpg\\\"]\\' WHERE image LIKE \\'http%\\'').run();console.log('Fixed');db.close()\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
