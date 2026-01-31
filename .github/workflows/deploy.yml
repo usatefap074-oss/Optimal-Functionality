@@ -48,7 +48,14 @@ jobs:
 
       # 6. Создание deployment архива
       - name: Create deployment archive
-        run: tar -czf deploy.tar.gz dist/ package.json package-lock.json && ls -lh deploy.tar.gz
+        run: |
+          echo "Packing FULL copy..."
+          tar -czf deploy.tar.gz \
+            dist/ \
+            client/ \
+            package.json \
+            package-lock.json \
+            && ls -lh deploy.tar.gz
 
       # 7. Загрузка на сервер
       - name: Upload files to server
@@ -66,16 +73,10 @@ jobs:
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
           set -e
 
-          echo "Creating backup of current version..."
-          if [ -d "${{ secrets.DEPLOY_PATH }}" ]; then
-            mkdir -p /tmp/backups
-            BACKUP_NAME="${{ secrets.DEPLOY_PATH }}_backup_$(date +%Y%m%d_%H%M%S)"
-            cp -r "${{ secrets.DEPLOY_PATH }}" "$BACKUP_NAME"
-            # Keep only last 5 backups
-            ls -dt "${{ secrets.DEPLOY_PATH }}"_backup_* 2>/dev/null | tail -n +6 | xargs -r rm -rf
-          fi
+          echo "Removing old files..."
+          rm -rf "${{ secrets.DEPLOY_PATH }}"/*
 
-          # Create deploy directory
+          echo "Creating deploy directory..."
           mkdir -p "${{ secrets.DEPLOY_PATH }}"
 
           echo "Extracting files..."
