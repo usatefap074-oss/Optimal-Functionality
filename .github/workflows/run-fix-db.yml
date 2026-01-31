@@ -1,0 +1,30 @@
+name: Fix Database on Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY_B64 }}" | base64 -d > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Run fix-db on server
+        run: |
+          ssh -i ~/.ssh/key -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH }} && npm run fix-db"
+
+      - name: Verify
+        run: |
+          sleep 2
+          curl -s http://${{ secrets.SERVER_HOST }}/api/products | head -c 400 | grep -o '"image":"[^"]*"' | head -3
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/key
