@@ -11,6 +11,7 @@ import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import Delivery from "@/pages/Delivery";
 import Contacts from "@/pages/Contacts";
+import Admin from "@/pages/Admin";
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/checkout" component={Checkout} />
       <Route path="/delivery" component={Delivery} />
       <Route path="/contacts" component={Contacts} />
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );

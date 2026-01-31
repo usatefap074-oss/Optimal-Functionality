@@ -31,10 +31,13 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <Link href={`/product/${product.slug}`} className="block relative aspect-square overflow-hidden bg-gray-50">
         <img
-          src={product.image || "https://placehold.co/400x400/png?text=No+Image"}
+          src={product.image && product.image.trim() !== "" ? product.image : "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80"}
           alt={product.name}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80";
+          }}
         />
         {!product.inStock && (
           <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center">
@@ -43,25 +46,23 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
       </Link>
 
-      <div className="p-4 flex flex-col flex-1">
-        <div className="text-xs text-muted-foreground mb-1 font-medium uppercase tracking-wider">
-          {product.category === 'feed' ? 'Корм' : 
-           product.category === 'cages' ? 'Клетки' :
-           product.category === 'toys' ? 'Игрушки' : 'Вет. аптека'}
+      <div className="p-3 md:p-4 flex flex-col flex-1">
+        <div className="text-[10px] md:text-xs text-muted-foreground mb-1 font-medium uppercase tracking-wider">
+          Попугай
         </div>
         
-        <Link href={`/product/${product.slug}`} className="font-display font-semibold text-lg leading-tight mb-2 hover:text-primary transition-colors line-clamp-2">
+        <Link href={`/product/${product.slug}`} className="font-display font-semibold text-sm md:text-lg leading-tight mb-2 hover:text-primary transition-colors line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]">
           {product.name}
         </Link>
         
-        <div className="mt-auto pt-4 flex items-end justify-between gap-4">
+        <div className="mt-auto pt-3 md:pt-4 flex items-end justify-between gap-2 md:gap-4">
           <div>
             {product.oldPrice && (
-              <div className="text-sm text-muted-foreground line-through decoration-red-400 decoration-2">
+              <div className="text-xs md:text-sm text-muted-foreground line-through decoration-red-400 decoration-2">
                 {product.oldPrice.toLocaleString()} ₽
               </div>
             )}
-            <div className="text-xl font-bold text-foreground">
+            <div className="text-base md:text-xl font-bold text-foreground">
               {product.price.toLocaleString()} ₽
             </div>
           </div>
@@ -70,13 +71,13 @@ export function ProductCard({ product }: ProductCardProps) {
             size="icon"
             disabled={!product.inStock}
             onClick={() => addItem(product)}
-            className={`rounded-full shadow-lg transition-all duration-300 ${
+            className={`rounded-full shadow-lg transition-all duration-300 h-9 w-9 md:h-10 md:w-10 shrink-0 ${
               inCart 
                 ? "bg-secondary hover:bg-secondary/90 text-white" 
                 : "bg-primary hover:bg-primary/90 text-white"
             }`}
           >
-            {inCart ? <Check className="w-5 h-5" /> : <ShoppingCart className="w-5 h-5" />}
+            {inCart ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />}
           </Button>
         </div>
       </div>

@@ -1,14 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { api, buildUrl, type ProductQueryParams } from "@shared/routes";
+import type { Product } from "@shared/schema";
+
+// Helper to deserialize product from API
+function deserializeProduct(raw: any): Product {
+  return {
+    ...raw,
+    images: typeof raw.images === 'string' ? JSON.parse(raw.images) : raw.images,
+    specs: typeof raw.specs === 'string' ? JSON.parse(raw.specs) : raw.specs,
+  };
+}
 
 export function useProducts(params?: ProductQueryParams) {
-  // Create a unique key based on params
   const queryKey = [api.products.list.path, params];
 
   return useQuery({
     queryKey,
     queryFn: async () => {
-      // Build query string manually since buildUrl handles path params
       const url = new URL(window.location.origin + api.products.list.path);
       if (params) {
         Object.entries(params).forEach(([key, value]) => {
@@ -20,7 +28,8 @@ export function useProducts(params?: ProductQueryParams) {
 
       const res = await fetch(url.toString());
       if (!res.ok) throw new Error("Failed to fetch products");
-      return api.products.list.responses[200].parse(await res.json());
+      const data = await res.json();
+      return data.map(deserializeProduct);
     },
   });
 }
@@ -33,7 +42,8 @@ export function useProduct(slug: string) {
       const res = await fetch(url);
       if (res.status === 404) return null;
       if (!res.ok) throw new Error("Failed to fetch product");
-      return api.products.get.responses[200].parse(await res.json());
+      const data = await res.json();
+      return deserializeProduct(data);
     },
     enabled: !!slug,
   });
@@ -47,19 +57,9 @@ export function useProductById(id: number) {
       const res = await fetch(url);
       if (res.status === 404) return null;
       if (!res.ok) throw new Error("Failed to fetch product");
-      return api.products.getById.responses[200].parse(await res.json());
+      const data = await res.json();
+      return deserializeProduct(data);
     },
     enabled: !!id,
-  });
-}
-
-export function useCategories() {
-  return useQuery({
-    queryKey: [api.categories.list.path],
-    queryFn: async () => {
-      const res = await fetch(api.categories.list.path);
-      if (!res.ok) throw new Error("Failed to fetch categories");
-      return api.categories.list.responses[200].parse(await res.json());
-    },
   });
 }

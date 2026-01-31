@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Minus, Plus, ShoppingCart, Truck, Shield, Check } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
+import type { Product } from "@shared/schema";
 
 export default function ProductDetails() {
   const [, params] = useRoute("/product/:slug");
@@ -17,11 +18,8 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState<string | null>(null);
 
-  // Fetch related products
-  const { data: relatedProducts } = useProducts({ 
-    category: product?.category, 
-    // In a real app we'd filter out the current product ID
-  });
+  // Fetch related products (all products since we only have parrots now)
+  const { data: relatedProducts } = useProducts({});
 
   if (isLoading) {
     return (
@@ -92,9 +90,7 @@ export default function ProductDetails() {
           <div className="flex flex-col">
             <div className="mb-6">
               <div className="text-sm text-primary font-bold uppercase tracking-wider mb-2">
-                {product.category === 'feed' ? 'Корм' : 
-                 product.category === 'cages' ? 'Клетки' :
-                 product.category === 'toys' ? 'Игрушки' : 'Вет. аптека'}
+                Попугаи
               </div>
               <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
                 {product.name}
@@ -123,26 +119,26 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <div className="p-6 bg-muted/50 rounded-xl mb-8 border border-border/50">
-              <div className="flex items-center gap-6 mb-6">
-                <div className="flex items-center rounded-lg border bg-white">
+            <div className="p-4 md:p-6 bg-muted/50 rounded-xl mb-8 border border-border/50">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-6 mb-6">
+                <div className="flex items-center justify-center rounded-lg border bg-white">
                   <button 
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-3 hover:text-primary transition-colors"
+                    className="p-3 md:p-4 hover:text-primary transition-colors touch-manipulation"
                   >
-                    <Minus className="w-4 h-4" />
+                    <Minus className="w-5 h-5 md:w-6 md:h-6" />
                   </button>
-                  <span className="w-12 text-center font-bold text-lg">{quantity}</span>
+                  <span className="w-16 md:w-20 text-center font-bold text-xl md:text-2xl">{quantity}</span>
                   <button 
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-3 hover:text-primary transition-colors"
+                    className="p-3 md:p-4 hover:text-primary transition-colors touch-manipulation"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-5 h-5 md:w-6 md:h-6" />
                   </button>
                 </div>
                 <Button 
                   size="lg" 
-                  className="flex-1 text-lg h-12 shadow-lg shadow-primary/20"
+                  className="flex-1 text-base md:text-lg h-12 md:h-14 shadow-lg shadow-primary/20"
                   disabled={!product.inStock}
                   onClick={() => addItem(product, quantity)}
                 >
@@ -215,9 +211,9 @@ export default function ProductDetails() {
             <h2 className="text-2xl font-bold font-display mb-8">Вам может понравиться</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {relatedProducts
-                .filter(p => p.id !== product.id)
+                .filter((p: Product) => p.id !== product.id)
                 .slice(0, 4)
-                .map(p => (
+                .map((p: Product) => (
                   <ProductCard key={p.id} product={p} />
                 ))}
             </div>

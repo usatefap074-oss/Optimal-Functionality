@@ -3,11 +3,14 @@ import {
   products,
   orders,
   orderItems,
+  reviews,
   type Product,
   type InsertProduct,
   type Order,
   type InsertOrder,
   type InsertOrderItem,
+  type Review,
+  type InsertReview,
   type CreateOrderRequest,
   type ProductQueryParams
 } from "@shared/schema";
@@ -20,21 +23,24 @@ export interface IStorage {
   getProduct(slug: string): Promise<Product | undefined>;
   getProductById(id: number): Promise<Product | undefined>;
   createProduct(product: InsertProduct): Promise<Product>;
+  updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined>;
+  deleteProduct(id: number): Promise<void>;
   
   // Orders
-  createOrder(order: CreateOrderRequest): Promise<{ orderNumber: string, total: number }>;
+  createOrder(order: CreateOrderRequest): Promise<{ orderNumber: string, total: number, telegramOrderId: string }>;
+  confirmOrderByTelegramId(telegramOrderId: string): Promise<Order | undefined>;
+  getOrderByTelegramId(telegramOrderId: string): Promise<Order | undefined>;
+
+  // Reviews
+  getReviews(): Promise<Review[]>;
+  createReview(review: InsertReview): Promise<Review>;
 }
 
 export class DatabaseStorage implements IStorage {
   async getProducts(params?: ProductQueryParams): Promise<Product[]> {
     const conditions = [];
     
-    if (params?.category) {
-      conditions.push(eq(products.category, params.category));
-    }
-    
     if (params?.inStock) {
-      // Handle boolean conversion if coming from query string
       conditions.push(eq(products.inStock, true));
     }
     
@@ -78,25 +84,62 @@ export class DatabaseStorage implements IStorage {
         query = query.orderBy(desc(products.createdAt)) as any;
     }
 
-    return await query;
+    const results = await query;
+    return results.map(p => this.deserializeProduct(p));
   }
 
   async getProduct(slug: string): Promise<Product | undefined> {
     const [product] = await db.select().from(products).where(eq(products.slug, slug));
-    return product;
+    if (product) {
+      return this.deserializeProduct(product);
+    }
+    return undefined;
   }
 
   async getProductById(id: number): Promise<Product | undefined> {
     const [product] = await db.select().from(products).where(eq(products.id, id));
-    return product;
+    if (product) {
+      return this.deserializeProduct(product);
+    }
+    return undefined;
   }
 
   async createProduct(product: InsertProduct): Promise<Product> {
-    const [newProduct] = await db.insert(products).values(product).returning();
-    return newProduct;
+    const serialized = this.serializeProduct(product);
+    const [newProduct] = await db.insert(products).values(serialized).returning();
+    return this.deserializeProduct(newProduct);
   }
 
-  async createOrder(req: CreateOrderRequest): Promise<{ orderNumber: string, total: number }> {
+  async updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined> {
+    const serialized = this.serializeProduct(product);
+    const [updated] = await db.update(products)
+      .set(serialized)
+      .where(eq(products.id, id))
+      .returning();
+    return updated ? this.deserializeProduct(updated) : undefined;
+  }
+
+  async deleteProduct(id: number): Promise<void> {
+    await db.delete(products).where(eq(products.id, id));
+  }
+
+  private serializeProduct(product: any): any {
+    return {
+      ...product,
+      images: Array.isArray(product.images) ? JSON.stringify(product.images) : product.images,
+      specs: Array.isArray(product.specs) ? JSON.stringify(product.specs) : product.specs,
+    };
+  }
+
+  private deserializeProduct(product: any): Product {
+    return {
+      ...product,
+      images: typeof product.images === 'string' ? JSON.parse(product.images) : product.images,
+      specs: typeof product.specs === 'string' ? JSON.parse(product.specs) : product.specs,
+    };
+  }
+
+  async createOrder(req: CreateOrderRequest): Promise<{ orderNumber: string, total: number, telegramOrderId: string }> {
     // 1. Calculate total and verify items
     let total = 0;
     const itemsToInsert: { productId: number, quantity: number, price: number }[] = [];
@@ -133,6 +176,7 @@ export class DatabaseStorage implements IStorage {
 
     // 2. Create Order
     const orderNumber = `ORD-${Date.now().toString().slice(-6)}-${Math.floor(Math.random() * 1000)}`;
+    const telegramOrderId = randomUUID();
     
     const [newOrder] = await db.insert(orders).values({
       orderNumber,
@@ -146,7 +190,9 @@ export class DatabaseStorage implements IStorage {
       comment: req.comment,
       paymentMethod: req.paymentMethod,
       total: finalTotal,
-      status: 'new'
+      status: 'new',
+      telegramOrderId,
+      telegramConfirmed: false
     }).returning();
 
     // 3. Create Order Items
@@ -159,7 +205,31 @@ export class DatabaseStorage implements IStorage {
       });
     }
 
-    return { orderNumber, total: finalTotal };
+    return { orderNumber, total: finalTotal, telegramOrderId };
+  }
+
+  async confirmOrderByTelegramId(telegramOrderId: string): Promise<Order | undefined> {
+    const [order] = await db
+      .update(orders)
+      .set({ telegramConfirmed: true, status: 'confirmed' })
+      .where(eq(orders.telegramOrderId, telegramOrderId))
+      .returning();
+    return order;
+  }
+
+  async getOrderByTelegramId(telegramOrderId: string): Promise<Order | undefined> {
+    const [order] = await db.select().from(orders).where(eq(orders.telegramOrderId, telegramOrderId));
+    return order;
+  }
+
+  async getReviews(): Promise<Review[]> {
+    const result = await db.select().from(reviews).orderBy(desc(reviews.createdAt));
+    return result;
+  }
+
+  async createReview(review: InsertReview): Promise<Review> {
+    const [newReview] = await db.insert(reviews).values(review).returning();
+    return newReview;
   }
 }
 

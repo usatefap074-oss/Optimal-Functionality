@@ -1,0 +1,1073 @@
+[
+  {
+    "name": "Сине-желтый ара (Ara ararauna)",
+    "price": 95000,
+    "originalPrice": 380000,
+    "image": "https://zolotoikakadu23.ru/img/49397177.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "380000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Ара Синелобый малый (лат. ara  Diopsittaca nobilis, син. Ara nobilis) Выкормыш",
+    "price": 47500,
+    "originalPrice": 190000,
+    "image": "https://zolotoikakadu23.ru/img/42494789.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "190000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Белолобый (лат. Amazona albifrons) Выкормыш",
+    "price": 37500,
+    "originalPrice": 150000,
+    "image": "https://zolotoikakadu23.ru/img/42156153.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "150000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Венесуэльский  (лат. Amazona amazonica) Выкормыш",
+    "price": 35000,
+    "originalPrice": 140000,
+    "image": "https://zolotoikakadu23.ru/img/42153342.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "140000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Желтолобый или суринамский амазон (лат. Amazona ochrocephala) Выкормыш",
+    "price": 45000,
+    "originalPrice": 180000,
+    "image": "https://zolotoikakadu23.ru/img/43675065.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "180000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Синелобый  (лат. Amazona aestiva) Выкормыш",
+    "price": 42500,
+    "originalPrice": 170000,
+    "image": "https://zolotoikakadu23.ru/img/42153454.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "170000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Краснохвостый Жако или африканский серый попугай (Psittacus erithacus) Выкормыш",
+    "price": 45000,
+    "originalPrice": 180000,
+    "image": "https://zolotoikakadu23.ru/img/43675139.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "180000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Попугай Благородный Эклектус Самка (Eclectus roratus) Выкормыш",
+    "price": 40000,
+    "originalPrice": 160000,
+    "image": "https://zolotoikakadu23.ru/img/40463600.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "160000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Попугай Благородный Эклектус Самец (Eclectus roratus) Выкормыш",
+    "price": 47500,
+    "originalPrice": 190000,
+    "image": "https://zolotoikakadu23.ru/img/42122266.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "190000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Розовый какаду или гала (лат. Eolophus roseicapilla) Выкормыш",
+    "price": 62500,
+    "originalPrice": 250000,
+    "image": "https://zolotoikakadu23.ru/img/42122669.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "250000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Большой белохохлый какаду (лат. Cacatua alba) Выкормыш",
+    "price": 105000,
+    "originalPrice": 420000,
+    "image": "https://zolotoikakadu23.ru/img/42041269.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "420000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Какаду Гоффина (лат. Cacatua goffiniana) Выкормыш",
+    "price": 57500,
+    "originalPrice": 230000,
+    "image": "https://zolotoikakadu23.ru/img/42512170.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "230000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Желтохохлый какаду (Cacatua sulphurea) Выкормыш",
+    "price": 80000,
+    "originalPrice": 320000,
+    "image": "https://zolotoikakadu23.ru/img/43675591.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "320000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Корелла - Нимфа или Нимфовый попугайчик (лат. Nymphicus hollandicus)",
+    "price": 2500,
+    "originalPrice": 10000,
+    "image": "https://zolotoikakadu23.ru/img/38923510.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "10000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Королевский попугай (Alisterus scapularis) Выкормыш",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/42494703.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Сенегальский длиннокрылый попугай (лат. Poicephalus senegalus)",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/38946952.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Аратинга солнечная (лат. Aratinga solstitialis)",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/39318778.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Радужный лорикет (лат. Trichoglossus moluccanus)",
+    "price": 16250,
+    "originalPrice": 65000,
+    "image": "https://zolotoikakadu23.ru/img/38947018.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "65000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) зеленый",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/43675043.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) окрас зеленый Выкормыш",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/42693968.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) окрас голубой Выкормыш",
+    "price": 10000,
+    "originalPrice": 40000,
+    "image": "https://zolotoikakadu23.ru/img/38946353.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "40000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Ожереловый попугай Крамера или Индийский кольчатый попугай, (лат. Psittacula krameri) Окрас желтый Выкормыш",
+    "price": 11250,
+    "originalPrice": 45000,
+    "image": "https://zolotoikakadu23.ru/img/42693992.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "45000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Королевский попугай (Alisterus scapularis) Выкормыш",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/42494703.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Пиррура Молине (лат.Pyrrhura molinae) окрас корица Выкормыш",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/42693219.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) окрас зеленый Выкормыш",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/42693968.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) окрас голубой Выкормыш",
+    "price": 10000,
+    "originalPrice": 40000,
+    "image": "https://zolotoikakadu23.ru/img/38946353.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "40000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Ожереловый попугай Крамера или Индийский кольчатый попугай, (лат. Psittacula krameri) Окрас желтый Выкормыш",
+    "price": 11250,
+    "originalPrice": 45000,
+    "image": "https://zolotoikakadu23.ru/img/42693992.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "45000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Сине-желтый ара (Ara ararauna)",
+    "price": 95000,
+    "originalPrice": 380000,
+    "image": "https://zolotoikakadu23.ru/img/49397177.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "380000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Ара Синелобый малый (лат. ara  Diopsittaca nobilis, син. Ara nobilis) Выкормыш",
+    "price": 47500,
+    "originalPrice": 190000,
+    "image": "https://zolotoikakadu23.ru/img/42494789.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "190000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Белолобый (лат. Amazona albifrons) Выкормыш",
+    "price": 37500,
+    "originalPrice": 150000,
+    "image": "https://zolotoikakadu23.ru/img/42156153.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "150000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Венесуэльский  (лат. Amazona amazonica) Выкормыш",
+    "price": 35000,
+    "originalPrice": 140000,
+    "image": "https://zolotoikakadu23.ru/img/42153342.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "140000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Желтолобый или суринамский амазон (лат. Amazona ochrocephala) Выкормыш",
+    "price": 45000,
+    "originalPrice": 180000,
+    "image": "https://zolotoikakadu23.ru/img/43675065.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "180000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Синелобый  (лат. Amazona aestiva) Выкормыш",
+    "price": 42500,
+    "originalPrice": 170000,
+    "image": "https://zolotoikakadu23.ru/img/42153454.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "170000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Краснохвостый Жако или африканский серый попугай (Psittacus erithacus) Выкормыш",
+    "price": 45000,
+    "originalPrice": 180000,
+    "image": "https://zolotoikakadu23.ru/img/43675139.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "180000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Попугай Благородный Эклектус Самка (Eclectus roratus) Выкормыш",
+    "price": 40000,
+    "originalPrice": 160000,
+    "image": "https://zolotoikakadu23.ru/img/40463600.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "160000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Попугай Благородный Эклектус Самец (Eclectus roratus) Выкормыш",
+    "price": 47500,
+    "originalPrice": 190000,
+    "image": "https://zolotoikakadu23.ru/img/42122266.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "190000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Розовый какаду или гала (лат. Eolophus roseicapilla) Выкормыш",
+    "price": 62500,
+    "originalPrice": 250000,
+    "image": "https://zolotoikakadu23.ru/img/42122669.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "250000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Большой белохохлый какаду (лат. Cacatua alba) Выкормыш",
+    "price": 105000,
+    "originalPrice": 420000,
+    "image": "https://zolotoikakadu23.ru/img/42041269.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "420000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Какаду Гоффина (лат. Cacatua goffiniana) Выкормыш",
+    "price": 57500,
+    "originalPrice": 230000,
+    "image": "https://zolotoikakadu23.ru/img/42512170.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "230000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Желтохохлый какаду (Cacatua sulphurea) Выкормыш",
+    "price": 80000,
+    "originalPrice": 320000,
+    "image": "https://zolotoikakadu23.ru/img/43675591.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "320000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Аратинга солнечная (лат. Aratinga solstitialis)",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/39318778.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Радужный лорикет (лат. Trichoglossus moluccanus)",
+    "price": 16250,
+    "originalPrice": 65000,
+    "image": "https://zolotoikakadu23.ru/img/38947018.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "65000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) зеленый",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/43675043.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Корелла - Нимфа или Нимфовый попугайчик (лат. Nymphicus hollandicus)",
+    "price": 2500,
+    "originalPrice": 10000,
+    "image": "https://zolotoikakadu23.ru/img/38923510.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "10000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Королевский попугай (Alisterus scapularis) Выкормыш",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/42494703.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Сенегальский длиннокрылый попугай (лат. Poicephalus senegalus)",
+    "price": 18750,
+    "originalPrice": 75000,
+    "image": "https://zolotoikakadu23.ru/img/38946952.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "75000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Пиррура Молине (лат.Pyrrhura molinae) окрас корица Выкормыш",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/42693219.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) окрас зеленый Выкормыш",
+    "price": 8750,
+    "originalPrice": 35000,
+    "image": "https://zolotoikakadu23.ru/img/42693968.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "35000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Монах/квакер/калита(лат. Myiopsitta monachus) окрас голубой Выкормыш",
+    "price": 10000,
+    "originalPrice": 40000,
+    "image": "https://zolotoikakadu23.ru/img/38946353.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "40000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Ожереловый попугай Крамера или Индийский кольчатый попугай, (лат. Psittacula krameri) Окрас желтый Выкормыш",
+    "price": 11250,
+    "originalPrice": 45000,
+    "image": "https://zolotoikakadu23.ru/img/42693992.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "45000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Сине-желтый ара (Ara ararauna)",
+    "price": 95000,
+    "originalPrice": 380000,
+    "image": "https://zolotoikakadu23.ru/img/49397177.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "380000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Ара Синелобый малый (лат. ara  Diopsittaca nobilis, син. Ara nobilis) Выкормыш",
+    "price": 47500,
+    "originalPrice": 190000,
+    "image": "https://zolotoikakadu23.ru/img/42494789.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "190000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Белолобый (лат. Amazona albifrons) Выкормыш",
+    "price": 37500,
+    "originalPrice": 150000,
+    "image": "https://zolotoikakadu23.ru/img/42156153.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "150000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Венесуэльский  (лат. Amazona amazonica) Выкормыш",
+    "price": 35000,
+    "originalPrice": 140000,
+    "image": "https://zolotoikakadu23.ru/img/42153342.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "140000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Желтолобый или суринамский амазон (лат. Amazona ochrocephala) Выкормыш",
+    "price": 45000,
+    "originalPrice": 180000,
+    "image": "https://zolotoikakadu23.ru/img/43675065.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "180000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Амазон Синелобый  (лат. Amazona aestiva) Выкормыш",
+    "price": 42500,
+    "originalPrice": 170000,
+    "image": "https://zolotoikakadu23.ru/img/42153454.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "170000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Краснохвостый Жако или африканский серый попугай (Psittacus erithacus) Выкормыш",
+    "price": 45000,
+    "originalPrice": 180000,
+    "image": "https://zolotoikakadu23.ru/img/43675139.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "180000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Попугай Благородный Эклектус Самка (Eclectus roratus) Выкормыш",
+    "price": 40000,
+    "originalPrice": 160000,
+    "image": "https://zolotoikakadu23.ru/img/40463600.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "160000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Попугай Благородный Эклектус Самец (Eclectus roratus) Выкормыш",
+    "price": 47500,
+    "originalPrice": 190000,
+    "image": "https://zolotoikakadu23.ru/img/42122266.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "190000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Розовый какаду или гала (лат. Eolophus roseicapilla) Выкормыш",
+    "price": 62500,
+    "originalPrice": 250000,
+    "image": "https://zolotoikakadu23.ru/img/42122669.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "250000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Большой белохохлый какаду (лат. Cacatua alba) Выкормыш",
+    "price": 105000,
+    "originalPrice": 420000,
+    "image": "https://zolotoikakadu23.ru/img/42041269.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "420000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Какаду Гоффина (лат. Cacatua goffiniana) Выкормыш",
+    "price": 57500,
+    "originalPrice": 230000,
+    "image": "https://zolotoikakadu23.ru/img/42512170.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "230000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  },
+  {
+    "name": "Желтохохлый какаду (Cacatua sulphurea) Выкормыш",
+    "price": 80000,
+    "originalPrice": 320000,
+    "image": "https://zolotoikakadu23.ru/img/43675591.jpg",
+    "description": "",
+    "specs": [
+      {
+        "key": "Оригинальная цена",
+        "value": "320000 ₽"
+      },
+      {
+        "key": "Скидка",
+        "value": "75%"
+      }
+    ]
+  }
+]

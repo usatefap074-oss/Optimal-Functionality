@@ -40,42 +40,42 @@ export default function Cart() {
             {items.map(({ product, quantity }) => (
               <div 
                 key={product.id} 
-                className="flex gap-4 p-4 bg-card rounded-xl border border-border/50 shadow-sm hover:shadow-md transition-shadow"
+                className="flex gap-3 md:gap-4 p-3 md:p-4 bg-card rounded-xl border border-border/50 shadow-sm hover:shadow-md transition-shadow"
               >
-                <Link href={`/product/${product.slug}`} className="shrink-0 w-24 h-24 bg-gray-50 rounded-lg overflow-hidden">
+                <Link href={`/product/${product.slug}`} className="shrink-0 w-20 h-20 md:w-24 md:h-24 bg-gray-50 rounded-lg overflow-hidden">
                   <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                 </Link>
 
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="flex justify-between gap-4">
-                    <Link href={`/product/${product.slug}`} className="font-semibold hover:text-primary transition-colors line-clamp-2">
+                <div className="flex-1 flex flex-col justify-between min-w-0">
+                  <div className="flex justify-between gap-2 md:gap-4">
+                    <Link href={`/product/${product.slug}`} className="font-semibold text-sm md:text-base hover:text-primary transition-colors line-clamp-2">
                       {product.name}
                     </Link>
                     <button 
                       onClick={() => removeItem(product.id)}
-                      className="text-muted-foreground hover:text-red-500 transition-colors"
+                      className="text-muted-foreground hover:text-red-500 transition-colors shrink-0"
                     >
-                      <Trash2 className="w-5 h-5" />
+                      <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </div>
 
-                  <div className="flex items-end justify-between mt-4">
+                  <div className="flex items-end justify-between mt-3 md:mt-4 gap-2">
                     <div className="flex items-center border rounded-lg bg-background">
                       <button 
                         onClick={() => updateQuantity(product.id, quantity - 1)}
-                        className="p-2 hover:bg-muted rounded-l-lg transition-colors"
+                        className="p-2 md:p-2.5 hover:bg-muted rounded-l-lg transition-colors touch-manipulation"
                       >
-                        <Minus className="w-3 h-3" />
+                        <Minus className="w-3 h-3 md:w-4 md:h-4" />
                       </button>
-                      <span className="w-8 text-center text-sm font-medium">{quantity}</span>
+                      <span className="w-8 md:w-10 text-center text-sm md:text-base font-medium">{quantity}</span>
                       <button 
                         onClick={() => updateQuantity(product.id, quantity + 1)}
-                        className="p-2 hover:bg-muted rounded-r-lg transition-colors"
+                        className="p-2 md:p-2.5 hover:bg-muted rounded-r-lg transition-colors touch-manipulation"
                       >
-                        <Plus className="w-3 h-3" />
+                        <Plus className="w-3 h-3 md:w-4 md:h-4" />
                       </button>
                     </div>
-                    <div className="text-lg font-bold">
+                    <div className="text-base md:text-lg font-bold whitespace-nowrap">
                       {(product.price * quantity).toLocaleString()} ₽
                     </div>
                   </div>

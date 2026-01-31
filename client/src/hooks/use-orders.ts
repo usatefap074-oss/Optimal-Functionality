@@ -1,30 +1,34 @@
 import { useMutation } from "@tanstack/react-query";
 import { api, type CreateOrderInput } from "@shared/routes";
 import { useToast } from "@/hooks/use-toast";
+import type { Product } from "@shared/schema";
+
+// Helper to deserialize product from API
+export function deserializeProduct(raw: any): Product {
+  return {
+    ...raw,
+    images: typeof raw.images === 'string' ? JSON.parse(raw.images) : raw.images,
+    specs: typeof raw.specs === 'string' ? JSON.parse(raw.specs) : raw.specs,
+  };
+}
 
 export function useCreateOrder() {
   const { toast } = useToast();
   
   return useMutation({
     mutationFn: async (data: CreateOrderInput) => {
-      // Validate with schema first
-      const validated = api.orders.create.input.parse(data);
-      
       const res = await fetch(api.orders.create.path, {
         method: api.orders.create.method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validated),
+        body: JSON.stringify(data),
       });
 
       if (!res.ok) {
-        if (res.status === 400) {
-          const error = api.orders.create.responses[400].parse(await res.json());
-          throw new Error(error.message);
-        }
-        throw new Error("Failed to create order");
+        const error = await res.json();
+        throw new Error(error.message || "Failed to create order");
       }
 
-      return api.orders.create.responses[201].parse(await res.json());
+      return await res.json();
     },
     onError: (error) => {
       toast({

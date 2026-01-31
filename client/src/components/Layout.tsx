@@ -110,44 +110,45 @@ export function Layout({ children }: LayoutProps) {
           {/* Actions */}
           <div className="flex items-center gap-2 md:gap-4">
             {/* Search Toggle */}
-            <div className={`relative transition-all duration-300 ${isSearchOpen ? 'w-full absolute inset-x-0 top-0 h-20 bg-background flex items-center px-4 z-50' : ''}`}>
-              {isSearchOpen ? (
-                <form onSubmit={handleSearch} className="w-full container flex items-center gap-2">
-                  <Search className="w-5 h-5 text-muted-foreground" />
-                  <Input 
-                    autoFocus
-                    placeholder="Поиск товаров..." 
-                    className="flex-1 border-none shadow-none focus-visible:ring-0 text-lg"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <Button type="button" variant="ghost" size="icon" onClick={() => setIsSearchOpen(false)}>
-                    <X className="w-5 h-5" />
-                  </Button>
-                </form>
-              ) : (
-                <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)} className="text-foreground/70 hover:text-primary">
-                  <Search className="h-5 w-5" />
-                </Button>
-              )}
-            </div>
+            {!isSearchOpen && (
+              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)} className="text-foreground/70 hover:text-primary">
+                <Search className="h-5 w-5" />
+              </Button>
+            )}
             
             {!isSearchOpen && (
-              <>
-                <Link href="/cart">
-                  <Button variant="ghost" size="icon" className="relative text-foreground/70 hover:text-primary">
-                    <ShoppingCart className="h-5 w-5" />
-                    {cartCount > 0 && (
-                      <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-primary-foreground text-[10px]">
-                        {cartCount}
-                      </Badge>
-                    )}
-                  </Button>
-                </Link>
-              </>
+              <Link href="/cart">
+                <Button variant="ghost" size="icon" className="relative text-foreground/70 hover:text-primary">
+                  <ShoppingCart className="h-5 w-5" />
+                  {cartCount > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-primary-foreground text-[10px]">
+                      {cartCount}
+                    </Badge>
+                  )}
+                </Button>
+              </Link>
             )}
           </div>
         </div>
+
+        {/* Search Bar - Full Width Below Header on Mobile */}
+        {isSearchOpen && (
+          <div className="border-t bg-background">
+            <form onSubmit={handleSearch} className="container h-16 flex items-center gap-2">
+              <Search className="w-5 h-5 text-muted-foreground shrink-0" />
+              <Input 
+                autoFocus
+                placeholder="Поиск товаров..." 
+                className="flex-1 border-none shadow-none focus-visible:ring-0 text-base h-10"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Button type="button" variant="ghost" size="icon" onClick={() => setIsSearchOpen(false)} className="shrink-0">
+                <X className="w-5 h-5" />
+              </Button>
+            </form>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">

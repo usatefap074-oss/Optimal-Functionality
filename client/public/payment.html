@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оплата заказа</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .payment-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 440px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .payment-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .payment-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .payment-header .amount {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .payment-body {
+      padding: 32px 24px;
+    }
+
+    .order-info {
+      background: #f7f9fc;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .order-info-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .order-info-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .order-info-label {
+      color: #64748b;
+    }
+
+    .order-info-value {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: #cbd5e1;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card-preview {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      color: white;
+      min-height: 200px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-chip {
+      width: 50px;
+      height: 40px;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-chip::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    .card-number {
+      font-size: 22px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .card-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card-holder {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-expiry {
+      font-size: 14px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .card-logo {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.7;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    .security-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .security-badge svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .payment-container {
+        border-radius: 0;
+      }
+
+      .card-number {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <div class="payment-header">
+      <h1>Оплата заказа</h1>
+      <div class="amount" id="orderAmount">0 ₽</div>
+    </div>
+
+    <div class="payment-body">
+      <div class="order-info">
+        <div class="order-info-row">
+          <span class="order-info-label">Заказ:</span>
+          <span class="order-info-value" id="orderNumber">—</span>
+        </div>
+        <div class="order-info-row">
+          <span class="order-info-label">Магазин:</span>
+          <span class="order-info-value">Товары для попугаев</span>
+        </div>
+      </div>
+
+      <div class="card-preview">
+        <div class="card-logo">VISA</div>
+        <div class="card-chip"></div>
+        <div class="card-number" id="cardPreviewNumber">•••• •••• •••• ••••</div>
+        <div class="card-details">
+          <div class="card-holder" id="cardPreviewHolder">CARDHOLDER NAME</div>
+          <div class="card-expiry" id="cardPreviewExpiry">••/••</div>
+        </div>
+      </div>
+
+      <form id="paymentForm">
+        <div class="form-group">
+          <label class="form-label" for="cardNumber">Номер карты</label>
+          <input 
+            type="text" 
+            id="cardNumber" 
+            class="form-input" 
+            placeholder="0000 0000 0000 0000"
+            maxlength="19"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cardHolder">Имя владельца</label>
+          <input 
+            type="text" 
+            id="cardHolder" 
+            class="form-input" 
+            placeholder="IVAN IVANOV"
+            style="text-transform: uppercase;"
+            required
+          >
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="cardExpiry">Срок действия</label>
+            <input 
+              type="text" 
+              id="cardExpiry" 
+              class="form-input" 
+              placeholder="MM/YY"
+              maxlength="5"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cardCvv">CVV</label>
+            <input 
+              type="text" 
+              id="cardCvv" 
+              class="form-input" 
+              placeholder="123"
+              maxlength="3"
+              required
+            >
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">
+          Оплатить <span id="submitAmount">0 ₽</span>
+        </button>
+
+        <div class="security-badge">
+          <svg fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+          </svg>
+          Защищено по стандарту PCI DSS
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Получаем параметры из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('order') || 'DEMO';
+    const amount = urlParams.get('amount') || '0';
+
+    // Заполняем информацию о заказе
+    document.getElementById('orderNumber').textContent = `#${orderId}`;
+    document.getElementById('orderAmount').textContent = `${parseInt(amount).toLocaleString('ru-RU')} ₽`;
+    document.getElementById('submitAmount').textContent = `${parseInt(amount).toLocaleString('ru-RU')} ₽`;
+
+    // Форматирование номера карты
+    const cardNumberInput = document.getElementById('cardNumber');
+    cardNumberInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\s/g, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      e.target.value = formattedValue;
+      
+      // Обновляем превью
+      document.getElementById('cardPreviewNumber').textContent = 
+        formattedValue || '•••• •••• •••• ••••';
+    });
+
+    // Форматирование срока действия
+    const cardExpiryInput = document.getElementById('cardExpiry');
+    cardExpiryInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+      }
+      e.target.value = value;
+      
+      // Обновляем превью
+      document.getElementById('cardPreviewExpiry').textContent = 
+        value || '••/••';
+    });
+
+    // Обновление имени владельца
+    const cardHolderInput = document.getElementById('cardHolder');
+    cardHolderInput.addEventListener('input', (e) => {
+      document.getElementById('cardPreviewHolder').textContent = 
+        e.target.value.toUpperCase() || 'CARDHOLDER NAME';
+    });
+
+    // Только цифры для CVV
+    const cardCvvInput = document.getElementById('cardCvv');
+    cardCvvInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+
+    // Обработка отправки формы
+    document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const button = e.target.querySelector('.submit-button');
+      button.textContent = 'Обработка платежа...';
+      button.disabled = true;
+
+      // Имитация обработки платежа (в реальности здесь будет API запрос)
+      setTimeout(() => {
+        alert('✅ Платеж успешно обработан!\n\nЗаказ подтвержден. Спасибо за покупку!');
+        button.textContent = '✅ Оплачено';
+        button.style.background = '#10b981';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertProductSchema, products, orders, insertOrderSchema } from './schema';
+import { insertProductSchema, products, orders, insertOrderSchema, reviews, insertReviewSchema } from './schema';
 
 // ============================================
 // SHARED ERROR SCHEMAS
@@ -26,7 +26,6 @@ export const api = {
       method: 'GET' as const,
       path: '/api/products',
       input: z.object({
-        category: z.string().optional(),
         minPrice: z.coerce.number().optional(),
         maxPrice: z.coerce.number().optional(),
         inStock: z.enum(['true', 'false']).optional(),
@@ -77,23 +76,30 @@ export const api = {
         201: z.object({
           orderNumber: z.string(),
           total: z.number(),
+          telegramOrderId: z.string(),
         }),
         400: errorSchemas.validation,
       },
     },
   },
-  categories: {
+  reviews: {
     list: {
       method: 'GET' as const,
-      path: '/api/categories',
+      path: '/api/reviews',
       responses: {
-        200: z.array(z.object({
-          id: z.string(),
-          name: z.string(),
-        })),
+        200: z.array(z.custom<typeof reviews.$inferSelect>()),
       },
     },
-  }
+    create: {
+      method: 'POST' as const,
+      path: '/api/reviews',
+      input: insertReviewSchema,
+      responses: {
+        201: z.custom<typeof reviews.$inferSelect>(),
+        400: errorSchemas.validation,
+      },
+    },
+  },
 };
 
 // ============================================
@@ -115,3 +121,5 @@ export function buildUrl(path: string, params?: Record<string, string | number>)
 // TYPES
 // ============================================
 export type CreateOrderInput = z.infer<typeof api.orders.create.input>;
+export type ProductQueryParams = z.infer<typeof api.products.list.input>;
+
