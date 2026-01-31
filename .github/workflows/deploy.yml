@@ -49,12 +49,10 @@ jobs:
       # 6. Создание deployment архива
       - name: Create deployment archive
         run: |
-          tar -czf deploy.tar.gz \
-            dist/ \
-            package.json \
-            package-lock.json \
-            --exclude='*.log' \
-            --exclude='.git'
+          echo "Files to archive:"
+          ls -lah dist/ package.json package-lock.json
+          tar -czf deploy.tar.gz dist/ package.json package-lock.json --exclude='*.log' --exclude='.git'
+          ls -lah deploy.tar.gz
 
       # 7. Загрузка на сервер
       - name: Upload files to server
