@@ -1,0 +1,172 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_VERSION: '20'
+
+    steps:
+      # 1. Checkout кода из репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # 3. Установка зависимостей
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Build приложения
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      # 5. Подготовка SSH
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      # 6. Создание deployment архива
+      - name: Create deployment archive
+        run: |
+          tar -czf deploy.tar.gz \
+            dist/ \
+            package.json \
+            package-lock.json \
+            --exclude='*.log' \
+            --exclude='.git'
+
+      # 7. Загрузка на сервер
+      - name: Upload files to server
+        run: |
+          scp -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            deploy.tar.gz \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+
+      # 8. Развертывание на сервере
+      - name: Deploy on server
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+          set -e
+
+          echo "Creating backup of current version..."
+          if [ -d "${{ secrets.DEPLOY_PATH }}" ]; then
+            mkdir -p /tmp/backups
+            BACKUP_NAME="${{ secrets.DEPLOY_PATH }}_backup_$(date +%Y%m%d_%H%M%S)"
+            cp -r "${{ secrets.DEPLOY_PATH }}" "$BACKUP_NAME"
+            # Keep only last 5 backups
+            ls -dt "${{ secrets.DEPLOY_PATH }}"_backup_* 2>/dev/null | tail -n +6 | xargs -r rm -rf
+          fi
+
+          # Create deploy directory
+          mkdir -p "${{ secrets.DEPLOY_PATH }}"
+
+          echo "Extracting files..."
+          cd "${{ secrets.DEPLOY_PATH }}"
+          tar -xzf /tmp/deploy.tar.gz
+          rm /tmp/deploy.tar.gz
+
+          echo "Installing production dependencies..."
+          npm ci --omit=dev --ignore-scripts
+
+          # Create .env if not exists
+          if [ ! -f .env ]; then
+            echo "Creating .env file..."
+            cat > .env << 'EOF'
+          NODE_ENV=production
+          PORT=5000
+          DATABASE_PATH=${{ secrets.DEPLOY_PATH }}/data/parrot_shop.db
+          EOF
+            if [ -n "${{ secrets.TELEGRAM_BOT_TOKEN }}" ]; then
+              echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+            fi
+            if [ -n "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then
+              echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
+            fi
+          fi
+
+          mkdir -p data
+
+          echo "Restarting application..."
+          sudo systemctl daemon-reload
+          sudo systemctl restart parrot-shop
+
+          # Check status
+          sleep 3
+          if sudo systemctl is-active --quiet parrot-shop; then
+            echo "✅ Service started successfully"
+          else
+            echo "❌ Service failed to start"
+            echo "Service logs:"
+            sudo journalctl -u parrot-shop -n 30 --no-pager
+            exit 1
+          fi
+          ENDSSH
+
+      # 9. Health check
+      - name: Verify deployment
+        run: |
+          echo "Waiting for application to be ready..."
+          sleep 5
+
+          echo "Checking API health..."
+          for i in {1..5}; do
+            if curl -s -f http://${{ secrets.SERVER_HOST }}/api/products > /dev/null 2>&1; then
+              echo "✅ API is healthy"
+              exit 0
+            fi
+            if [ $i -lt 5 ]; then
+              echo "Attempt $i/5 failed, retrying..."
+              sleep 3
+            fi
+          done
+
+          echo "❌ API health check failed"
+          exit 1
+
+      # 10. Telegram notification
+      - name: Send Telegram notification
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            EMOJI="✅"
+            MESSAGE="Deploy successful!%0ACommit: ${{ github.sha }}%0ABranch: ${{ github.ref_name }}%0AActor: ${{ github.actor }}"
+          else
+            EMOJI="❌"
+            MESSAGE="Deploy failed!%0ACommit: ${{ github.sha }}%0ABranch: ${{ github.ref_name }}%0ACheck logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
+
+          if [ -n "${{ secrets.TELEGRAM_BOT_TOKEN }}" ] && [ -n "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then
+            curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+              -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+              -d text="$EMOJI $MESSAGE" \
+              -d parse_mode="HTML" || echo "Telegram notification failed (non-blocking)"
+          fi
+
+      # 11. Cleanup
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

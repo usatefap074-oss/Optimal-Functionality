@@ -4,3 +4,39 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Database files
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Local development
+.local
+.replit
+
+# IDE
+.vscode
+.idea
+
+# SSH keys and deployment credentials
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+deploy_key*
+authorized_keys
+
+# Deployment artifacts
+deploy.tar.gz
+images.tar.gz
+
+# Deprecated deployment scripts (use GitHub Actions instead)
+# deploy.sh
+# deploy.bat
+# deploy.ps1
+# deploy-windows.ps1

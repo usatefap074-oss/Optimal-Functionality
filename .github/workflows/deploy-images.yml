@@ -1,0 +1,81 @@
+name: Deploy Images Only
+
+on:
+  workflow_dispatch:
+    inputs:
+      sync_type:
+        description: 'Sync type'
+        required: true
+        default: 'incremental'
+        type: choice
+        options:
+          - incremental
+          - full
+
+jobs:
+  deploy-images:
+    name: Upload Images to Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Create and upload images archive
+        run: |
+          echo "Creating images archive..."
+          tar -czf images.tar.gz client/public/images/
+
+          echo "Uploading to server..."
+          scp -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            images.tar.gz \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+
+      - name: Extract images on server
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+          set -e
+
+          echo "Extracting images..."
+          cd "${{ secrets.DEPLOY_PATH }}/dist/public"
+
+          if [ "${{ github.event.inputs.sync_type }}" = "full" ]; then
+            # Full sync: remove old images first
+            rm -rf images
+          fi
+
+          tar -xzf /tmp/images.tar.gz --strip-components=3
+          rm /tmp/images.tar.gz
+
+          echo "✅ Images uploaded successfully"
+          echo "Total image files: $(find images -type f | wc -l)"
+          ENDSSH
+
+      - name: Verify images
+        run: |
+          echo "Verifying images were uploaded..."
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+
+          IMAGE_COUNT=$(find "${{ secrets.DEPLOY_PATH }}/dist/public/images" -type f 2>/dev/null | wc -l)
+          echo "✅ Total images on server: $IMAGE_COUNT"
+
+          if [ $IMAGE_COUNT -lt 100 ]; then
+            echo "⚠️ Warning: Expected more images on server"
+          fi
+          ENDSSH
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
