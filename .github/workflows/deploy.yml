@@ -48,10 +48,7 @@ jobs:
 
       # 6. Создание deployment архива
       - name: Create deployment archive
-        run: |
-          echo "Creating full deployment archive..."
-          tar -czf deploy.tar.gz dist/ package.json package-lock.json client/public/images/ data/ || tar -czf deploy.tar.gz dist/ package.json package-lock.json client/public/images/ || tar -czf deploy.tar.gz dist/ package.json package-lock.json
-          ls -lh deploy.tar.gz
+        run: tar -czf deploy.tar.gz dist/ package.json package-lock.json && ls -lh deploy.tar.gz
 
       # 7. Загрузка на сервер
       - name: Upload files to server
